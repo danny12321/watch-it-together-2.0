@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import MyContext from './MyContext';
 
@@ -29,7 +30,9 @@ class App extends Component {
     return (
       <div className="App">
         <MyProvider>
-          <Routes />
+          <Router>
+            <Routes />
+          </Router>
         </MyProvider>
       </div>
     );
