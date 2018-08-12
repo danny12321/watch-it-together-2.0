@@ -5,10 +5,18 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import MyContext from './MyContext';
 
 import Routes from './routes/Index';
+const io = require('socket.io-client');
+
+let socket
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') 
+  socket = io.connect(`http://${window.location.hostname}:5000`);
+else
+  socket = io();
 
 class MyProvider extends Component {
   state = {
-
+    socket,
+    room: null
   }
 
   render() {
