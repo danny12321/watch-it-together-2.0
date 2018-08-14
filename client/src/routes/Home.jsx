@@ -60,17 +60,16 @@ class Home extends Component {
   }
 
   joinRoom(id) {
-    this.props.context.state.socket.emit('joinRoom', {id}, room => {
-      this.props.context.changeValue('room', room)
-      this.props.history.push(`/player/${room.id}`)
+    this.props.context.state.socket.emit('joinRoom', { id }, room => {
+      this.props.context.changeValue('room', room, () => {
+        this.props.history.push(`/player/${room.id}`)
+      })
     })
   }
 
   render() {
     return (
       <div>
-        <h2>Home</h2>
-
         <Paper>
           <Tabs
             value={this.state.tab}
@@ -122,6 +121,7 @@ class Home extends Component {
                     name="room-name"
                     label="Naam"
                     margin="normal"
+                    required
                   />
 
                   <Button color="primary" type="submit">
